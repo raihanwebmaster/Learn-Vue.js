@@ -7,9 +7,16 @@
 
 
 <!--------------------- Binding HTML -------------------------->
-<template>
+<!-- <template>
   <div v-html="hero"></div>
   <div v-html="hack"></div>
+</template> -->
+
+
+<!--------------------- Binding to Attributes -------------------------->
+<template>
+  <h2 v-bind:id="headingId">Heading</h2>
+  <button v-bind:disabled="isDisabled">Bind</button>
 </template>
 
 <script>
@@ -22,7 +29,9 @@ export default {
       name: 'Raihan',
       channel: 'RaihanWebmaster',
       hero: '<b>Raihan</b>',
-      hack:`<a href="#" onclick="alert('You have been hacked!')">Win a prize!</a>`
+      hack: `<a href="#" onclick="alert('You have been hacked!')">Win a prize!</a>`,
+      headingId: 'heading',
+      isDisabled: true,
     }
   }
 }
