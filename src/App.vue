@@ -1,7 +1,15 @@
 <!---------------------- Binding Text ------------------------->
-<template>
+<!-- <template>
   <div>{{greet}} {{name}}</div>
   <div v-text="channel"></div>
+</template> -->
+
+
+
+<!--------------------- Binding HTML -------------------------->
+<template>
+  <div v-html="hero"></div>
+  <div v-html="hack"></div>
 </template>
 
 <script>
@@ -12,7 +20,9 @@ export default {
     return {
       greet:'Hello',
       name: 'Raihan',
-      channel: 'RaihanWebmaster'
+      channel: 'RaihanWebmaster',
+      hero: '<b>Raihan</b>',
+      hack:`<a href="#" onclick="alert('You have been hacked!')">Win a prize!</a>`
     }
   }
 }
