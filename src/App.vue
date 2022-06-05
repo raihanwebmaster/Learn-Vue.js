@@ -32,7 +32,7 @@
 </template> -->
 
 <!--------------------- Binding Styles -------------------------->
-<template>
+<!-- <template>
   <h2 v-bind:style="{
       color: highlightColor,
       fontSize: headerSize + 'px',
@@ -43,7 +43,14 @@
   <h2 v-bind:style="headerStyleObject">Style Object</h2>
   <div v-bind:style="[baseStyleObject, successStyleObject]">Success Style</div>
   <div v-bind:style="[baseStyleObject, dangerStyleObject]">Danger Style</div>
+</template> -->
+
+<!--------------------- v-bind Shorthand -------------------------->
+<template>
+  <!-- <h2 v-bind:id="headingId">Heading</h2> -->
+  <h2 :id="headingId">Heading</h2>
 </template>
+
 
 <script>
 export default {
