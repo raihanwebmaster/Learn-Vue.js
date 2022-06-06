@@ -1,18 +1,25 @@
-<!---------------------- Conditional Rendering ------------------------->
+<!---------------------- List Rendering ------------------------->
 <template>
-  <h2 v-if="num === 0">The Number is Zero</h2>
-  <h2 v-else-if="num < 0">The number is negative</h2>
-  <h2 v-else-if="num > 0">The number is postive</h2>
-  <h2 v-else>Not a number</h2>
+  <!-- <h2 v-for="name in names" :key="name">{{name}}</h2> -->
+  <h2 v-for="(name, index) in names" :key="name"> {{ index }} {{ name }}</h2>
 
-  <template v-if="display">
-    <h2>Raihan</h2>
-    <h2>Uddin</h2>
-    <h2>Vue</h2>
+  <h2 v-for="name in fullNames" :key="name.first"> {{ name.first }} {{ name.last }}</h2>
+
+  <div v-for="actor in actors" :key="actor.name">
+    <h2>{{ actor.name }}</h2>
+    <h3 v-for="movie in actor.movies" :key="movie">{{ movie }}</h3>
+  </div>
+
+  <h2 v-for="(value, key, index) in myInfo" :key="value">{{index}} {{key}} {{value}}</h2>
+
+  <template v-for="name in names" :key="name">
+    <h2>{{name}}</h2>
+    <hr>
   </template>
 
-  <h2 v-show="showElement">Using v-show</h2>
-  <h2 v-if="showElement">Using v-show</h2>
+  <template v-for="name in names" :key="name" >
+    <h2 v-if="name === 'Bruce'">{{name}}</h2>
+  </template>
 </template>
 
 
@@ -22,9 +29,29 @@ export default {
   name: "App",
   data() {
     return {
-      num: 0,
-      display: true,
-      showElement: true,
+      names: [
+        'Bruce', 'Clark', 'Diana'
+      ],
+      fullNames: [
+        { first: 'Bruce', last: 'Wayne' },
+        { first: 'Clark', last: 'kent' },
+        { first: 'Princess', last: 'Diana' }
+      ],
+      actors: [
+        {
+          name: 'Christian Bale',
+          movies: ['Batman', 'The Prestige'],
+        },
+        {
+          name: 'Di Caprio',
+          movies: ['Titanic', 'Inception'],
+        },
+      ],
+      myInfo: {
+        name: 'Raihan',
+        gitHub: 'raihanwebmaster',
+        course: 'Vue 3'
+      }
     };
   },
 };
