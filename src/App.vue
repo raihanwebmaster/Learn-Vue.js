@@ -1,8 +1,17 @@
-<!---------------------- Methods ------------------------->
+<!---------------------- Event Handling ------------------------->
 <template>
-  <h2>{{ 2 + 3 + 5 }}</h2>
-  <h2>Add method - {{ add(2, 5, 3) }}</h2>
-  <h2>Multiple method - {{multiply(10)}}</h2>
+  <h2>{{ name }}</h2>
+  <div>
+    <button v-on:click="changeName">Change Name</button>
+  </div>
+  <!-- <div>
+    <button v-on:mouseover="name = 'Uddin'">Change Name</button>
+  </div> -->
+  <h2>{{ count }}</h2>
+  <div>
+    <button @click="increment(1, $event)">Increment</button>
+    <button v-on:click="decrement(5)">Decrement</button>
+  </div>
 </template>
 
 
@@ -12,15 +21,21 @@ export default {
   name: "App",
   data() {
     return {
-      baseMultiplier: 5
+      name: 'Raihan',
+      count: 0,
     };
   },
   methods: {
-    add(a, b, c) {
-      return a + b + c
+    changeName(event) {
+      this.name = 'Uddin'
+      console.log(event)
     },
-    multiply(num) {
-      return num* this.baseMultiplier
+    increment(num,event) {
+      this.count += num
+      console.log('Event',event)
+    },
+    decrement(num) {
+      this.count -= num
     }
   }
 };
