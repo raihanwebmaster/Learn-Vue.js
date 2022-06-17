@@ -1,14 +1,15 @@
-<!---------------------- Form Handling ------------------------->
+<!---------------------- Modifiers ------------------------->
+ <!-- A suffix you can add to either the v-on direactive or the v-model directive to add some functionality inline within the template -->
 <template>
   <div>
     <pre>
     {{ JSON.stringify(formValues, null, 2) }}
   </pre>
   </div>
-  <form @submit="submitForm">
+  <form @submit.prevent="submitForm">
     <div>
       <label for="name">Name</label>
-      <input type="text" id="name" v-model="formValues.name">
+      <input type="text" id="name" v-model.trim.lazy="formValues.name">
     </div>
 
 
@@ -75,8 +76,15 @@
 
 
     <div>
-      <button>Submit</button>
+      <label for="age">Age</label>
+      <input @keyup.enter="submitForm" type="number" id="age" v-model.number="formValues.age" />
     </div>
+
+
+
+    <!-- <div>
+      <button>Submit</button>
+    </div> -->
   </form>
 </template>
 
@@ -95,12 +103,13 @@ export default {
         remoteWork: "no",
         skillSet: [],
         yearsOfExperience: '',
+        age:null,
       }
     };
   },
   methods: {
-    submitForm(event) {
-      event.preventDefault();
+    submitForm() {
+      // event.preventDefault();
       console.log('from values', this.formValues)
     }
   }
