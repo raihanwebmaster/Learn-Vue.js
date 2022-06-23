@@ -1,12 +1,10 @@
-<!---------------------- v-once v-pre ------------------------->
-<!-- v-once -> 
-    Renders the corresponding HTML  element only once . On subsequent re-renders, the element is treated as static content and skipped. -->
-<!-- v-pre -> 
-  Skips compilation for the corresponding element -->
+<!---------------------- computed properties ------------------------->
 <template>
-    <h2 v-once>{{name}}</h2>
-    <button @click="name = 'uddin'">Change Name</button>
-    <h2 v-pre>{{name}}</h2>
+  <h2> FullName - {{ firstName }} {{ lastName }} </h2>
+  <h2> Computed FullName - {{ fullName }} </h2>
+  <h2> Total - {{ items.reduce((total, curr) => (total = total + curr.price), 0) }} </h2>
+  <button @click="items.push({ id: 4, title: 'Keyboard', price: 50 })">Add item</button>
+  <h2> Computed - {{ total }}</h2>
 </template>
 
 
@@ -16,10 +14,36 @@ export default {
   name: "App",
   data() {
     return {
-      name: 'raihan'
+      firstName: 'raihan',
+      lastName: 'uddin',
+      items: [
+        {
+          id: 1,
+          title: 'Tv',
+          price: 100,
+        },
+        {
+          id: 2,
+          title: "Phone",
+          price: 200,
+        },
+        {
+          id: 3,
+          title: 'Laptop',
+          price: 300
+        }
+      ]
     };
   },
   methods: {
+  },
+  computed: {
+    fullName() {
+      return `${this.firstName} ${this.lastName}`
+    },
+    total() {
+      return this.items.reduce((total, curr) => (total = total + curr.price), 0)
+    }
   }
 };
 </script>
@@ -29,10 +53,8 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
+  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
-
-
 </style>
