@@ -1,55 +1,12 @@
-<!---------------------- Binding Text ------------------------->
-<!-- <template>
-  <div>{{greet}} {{name}}</div>
-  <div v-text="channel"></div>
-</template> -->
-
-<!--------------------- Binding HTML -------------------------->
-<!-- <template>
-  <div v-html="hero"></div>
-  <div v-html="hack"></div>
-</template> -->
-
-<!--------------------- Binding to Attributes -------------------------->
-<!-- <template>
-  <h2 v-bind:id="headingId">Heading</h2>
-  <button v-bind:disabled="isDisabled">Bind</button>
-</template> -->
-
-<!--------------------- Binding Classes -------------------------->
-<!-- <template>
-  <h2 class="underline">Underlined Text</h2>
-  <h2 class="underline" v-bind:class="status">Status</h2>
-  <h2 v-bind:class="isPromoted && 'promoted'">Promoted Movie</h2>
-  <h2 v-bind:class="isSoldOut ? 'sold-out' : 'new'">Soldout moive</h2>
-  <h2 v-bind:class="['new', 'promoted']">Newly promoted movie</h2>
-  <h2 v-bind:class="[isPromoted && 'promoted', isSoldOut ? 'sold-out' : 'new']">Array Conditional movie</h2>
-  <h2 v-bind:class="{
-    promoted: isPromoted,
-    new: !isSoldOut,
-    'sold-out': isSoldOut,
-  }">Object Conditional movie</h2>
-</template> -->
-
-<!--------------------- Binding Styles -------------------------->
-<!-- <template>
-  <h2 v-bind:style="{
-      color: highlightColor,
-      fontSize: headerSize + 'px',
-      padding: '20px',
-    }">
-    Inline Style
-  </h2>
-  <h2 v-bind:style="headerStyleObject">Style Object</h2>
-  <div v-bind:style="[baseStyleObject, successStyleObject]">Success Style</div>
-  <div v-bind:style="[baseStyleObject, dangerStyleObject]">Danger Style</div>
-</template> -->
-
-<!--------------------- v-bind Shorthand -------------------------->
+<!---------------------- computed properties ------------------------->
 <template>
-  <!-- <h2 v-bind:id="headingId">Heading</h2> -->
-  <h2 :id="headingId">Heading</h2>
+  <h2> FullName - {{ firstName }} {{ lastName }} </h2>
+  <h2> Computed FullName - {{ fullName }} </h2>
+  <h2> Total - {{ items.reduce((total, curr) => (total = total + curr.price), 0) }} </h2>
+  <button @click="items.push({ id: 4, title: 'Keyboard', price: 50 })">Add item</button>
+  <h2> Computed - {{ total }}</h2>
 </template>
+
 
 
 <script>
@@ -57,41 +14,37 @@ export default {
   name: "App",
   data() {
     return {
-      greet: "Hello",
-      name: "Raihan",
-      channel: "RaihanWebmaster",
-      hero: "<b>Raihan</b>",
-      hack: `<a href="#" onclick="alert('You have been hacked!')">Win a prize!</a>`,
-      headingId: "heading",
-      isDisabled: true,
-      status: "danger",
-      isPromoted: true,
-      isSoldOut: false,
-      highlightColor: "orange",
-      headerSize: 50,
-      headerStyleObject: {
-        color: "orange",
-        fontSize: "50px",
-        padding: "20px",
-      },
-      baseStyleObject: {
-        fontSize: '50px',
-        padding: '10px',
-      },
-      successStyleObject: {
-        color: 'green',
-        backgroundColor: 'lightgreen',
-        border: '1px solid green',
-        padding: '20px'
-      },
-      dangerStyleObject: {
-        color: 'darkred',
-        backgroundColor: 'red',
-        border: '1px solid darkred',
-        marginTop: '20px'
-      }
+      firstName: 'raihan',
+      lastName: 'uddin',
+      items: [
+        {
+          id: 1,
+          title: 'Tv',
+          price: 100,
+        },
+        {
+          id: 2,
+          title: "Phone",
+          price: 200,
+        },
+        {
+          id: 3,
+          title: 'Laptop',
+          price: 300
+        }
+      ]
     };
   },
+  methods: {
+  },
+  computed: {
+    fullName() {
+      return `${this.firstName} ${this.lastName}`
+    },
+    total() {
+      return this.items.reduce((total, curr) => (total = total + curr.price), 0)
+    }
+  }
 };
 </script>
 
@@ -103,21 +56,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.promoted {
-  font-style: italic;
-}
-
-.new {
-  color: olivedrab;
-}
-
-.sold-out {
-  color: red;
 }
 </style>
