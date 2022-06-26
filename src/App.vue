@@ -10,6 +10,7 @@
   <input type="text" v-model="movieInfo.actor">
   <div>
     <button @click="movieList.push('Wonder Woman')">Add Movie</button>
+    <!-- <button @click="movieList = movieList.concat('Wonder Woman')">Add Movie</button> -->
   </div>
 </template>
 
